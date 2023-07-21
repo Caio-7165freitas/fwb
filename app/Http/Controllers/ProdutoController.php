@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produtos;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Symfony\Contracts\Service\Attribute\Required;
 
-class ProdutosController extends Controller
+class ProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class ProdutosController extends Controller
     public function index()
     {
         //
-        $produtos = Produtos::latest()->paginate(5);
+        $produto = Produto::latest()->paginate(5);
 
 
         return view('produtos.index',compact('produtos'))
@@ -51,7 +51,7 @@ class ProdutosController extends Controller
         ]);
 
 
-        Produtos::create($request->all());
+        Produto::create($request->all());
 
 
         return redirect()->route('produtos.index')
@@ -62,7 +62,7 @@ class ProdutosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Produtos $produtos): View
+    public function show(Produto $produto): View
     {
         return view('produtos.show',compact('produto'));
     }
@@ -70,7 +70,7 @@ class ProdutosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Produtos $produtos): View
+    public function edit(Produto $produto): View
     {
         return view('produtos.edit',compact('produto'));
     }
@@ -78,7 +78,7 @@ class ProdutosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produtos $produtos): RedirectResponse
+    public function update(Request $request, Produto $produto): RedirectResponse
     {
         $request->validate([
 
@@ -93,7 +93,7 @@ class ProdutosController extends Controller
         ]);
 
 
-        $produtos->update($request->all());
+        $produto->update($request->all());
 
 
         return redirect()->route('produtos.index')
@@ -104,9 +104,9 @@ class ProdutosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produtos $produtos): RedirectResponse
+    public function destroy(Produto $produto): RedirectResponse
     {
-        $produtos->delete();
+        $produto->delete();
 
 
         return redirect()->route('produtos.index')
