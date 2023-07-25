@@ -20,6 +20,8 @@ return new class extends Migration
             $table->float('precoUnitario');
 
             $table->float('precoVenda');
+            
+            $table->timestamps();
         });
     }
 
