@@ -14,14 +14,13 @@ class ProdutoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         //
         $produto = Produto::latest()->paginate(5);
 
 
-        return view('produtos.index',compact('produtos'))
-
+        return view('produtos.index',compact('produto'))
             ->with('i',(request()->input('page',1)-1)*5);
     }
 
